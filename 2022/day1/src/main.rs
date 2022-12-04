@@ -1,14 +1,17 @@
+use std::env;
 use std::fs;
 use std::collections::BTreeMap;
 
 // https://adventofcode.com/2022/day/1
 
-// For first challenge set this to 1
-// For second challenge set to 2
-const TOP: i32 = 3;
+// For first challenge: cargo run -- 1
+// For second challenge: cargo run -- 3
 
 fn main() {
-    let contents = fs::read_to_string("input.txt")
+    let args: Vec<String> = env::args().collect();
+    let count: i32 = args[1].parse().expect("Invalid integer");
+
+    let contents = fs::read_to_string("data/input.txt")
         .expect("Something went wrong reading the file");
 
     // Keep track of which elve has the highest number of calories
@@ -41,10 +44,10 @@ fn main() {
     // Grab the top $TOP and total the calories
     let mut total_calories = 0;
     let mut iterable = calories_to_elve.iter().rev();
-    for _ in 0..TOP {
+    for _ in 0..count {
         let item = iterable.next().unwrap();
         total_calories += item.0;
     }
 
-    println!("Total calories for top {} elves: {}", TOP, total_calories);
+    println!("Total calories for top {} elves: {}", count, total_calories);
 }
