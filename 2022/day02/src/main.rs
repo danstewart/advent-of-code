@@ -1,7 +1,10 @@
 use std::{collections::HashMap, env, fs};
 
+// https://adventofcode.com/2022/day/2
+
 // For first challenge: cargo run -- 1
 // For second challenge: cargo run -- 2
+
 fn main() {
     let args: Vec<String> = env::args().collect();
 
