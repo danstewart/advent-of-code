@@ -26,6 +26,7 @@ fn main() {
         1 => days::day01::process(part, contents),
         2 => days::day02::process(part, contents),
         3 => days::day03::process(part, contents),
+        4 => days::day04::process(part, contents),
         _ => {
             println!("Invalid day: {}", day);
             0

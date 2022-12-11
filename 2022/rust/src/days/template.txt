@@ -1,0 +1,42 @@
+// Template for new puzzles
+// Remember
+// - Update mod.rs to export the new day
+// - Update the `match` statement in `main.rs`
+// - Add the input file to `data/`
+
+pub fn process(part: i32, contents: String) -> i32 {
+    if part == 1 {
+        return part1(contents);
+    } else if part == 2 {
+        return part2(contents);
+    }
+
+    0
+}
+
+fn part1(input: String) -> i32 {
+    0
+}
+
+fn part2(input: String) -> i32 {
+    0
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_part1() {
+        let input = "".into();
+        let result = part1(input);
+        assert_eq!(result, 0);
+    }
+
+    #[test]
+    fn test_part2() {
+        let input = "".into();
+        let result = part2(input);
+        assert_eq!(result, 0);
+    }
+}
