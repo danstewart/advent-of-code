@@ -1,31 +1,16 @@
-use std::{collections::HashMap, env, fs};
+use std::collections::HashMap;
 
-// https://adventofcode.com/2022/day/2
-
-// For first challenge: cargo run -- 1
-// For second challenge: cargo run -- 2
-
-fn main() {
-    let args: Vec<String> = env::args().collect();
-
-    if args.len() != 2 {
-        println!("Usage: cargo run -- <1 or 2>");
-        return;
-    }
-
-    let part: i32 = args[1].parse().expect("Expected 1 or 2 as first argument");
-
-    let contents =
-        fs::read_to_string("data/input.txt").expect("Something went wrong reading the file");
-
+pub fn process(part: i32, contents: String) -> i32 {
     if part == 1 {
-        println!("{}", parse_guide_part1(contents));
-    } else if part == 2 {
-        println!("{}", parse_guide_part2(contents));
+        return part1(contents);
+    } else {
+        return part2(contents);
     }
+
+    0
 }
 
-fn parse_guide_part1(input: String) -> i32 {
+fn part1(input: String) -> i32 {
     let lines = input.split("\n");
 
     // A = Rock, B = Paper, C = Scissors
@@ -76,7 +61,7 @@ fn parse_guide_part1(input: String) -> i32 {
     score
 }
 
-fn parse_guide_part2(input: String) -> i32 {
+fn part2(input: String) -> i32 {
     let lines = input.split("\n");
 
     // A = Rock, B = Paper, C = Scissors
@@ -145,16 +130,16 @@ mod tests {
     use super::*;
 
     #[test]
-    fn part1() {
+    fn test_part1() {
         let input = "A Y\nB X\nC Z";
-        let score = parse_guide_part1(input.into());
+        let score = part1(input.into());
         assert_eq!(score, 15)
     }
 
     #[test]
-    fn part2() {
+    fn test_part2() {
         let input = "A Y\nB X\nC Z";
-        let score = parse_guide_part2(input.into());
+        let score = part2(input.into());
         assert_eq!(score, 12)
     }
 }

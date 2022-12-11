@@ -4,9 +4,7 @@ https://adventofcode.com/
 
 ### Rust
 
-To start a new rust solution run `cargo new day01 && cd day01`  
-Then run with `cargo run`
-
-All programs should take an argument for which part of the puzzle to run: eg. `cargo run -- 1`
-
-See `scaffold/scaffold.rs` for a template for new solutions.
+The rust solutions can be found in `2022/rust/`  
+They can be ran with `cargo run <day number> <puzzle part>`, eg. `cargo run 1 1` (for day 1, part 1)  
+Each puzzle expects a corresponding file in `data/day<number>.txt`, eg. `data/day01.txt`  
+Each solution also has tests using the sample input, eg. `cargo test days::day01`

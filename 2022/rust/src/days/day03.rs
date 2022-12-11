@@ -1,28 +1,13 @@
-use std::{collections::HashMap, env, fs};
+use std::collections::HashMap;
 
-// https://adventofcode.com/2022/day/3
-
-// For first challenge: cargo run -- 1
-// For second challenge: cargo run -- 2
-
-fn main() {
-    let args: Vec<String> = env::args().collect();
-
-    if args.len() != 2 {
-        println!("Usage: cargo run -- <1 or 2>");
-        return;
-    }
-
-    let part: i32 = args[1].parse().expect("Expected 1 or 2 as first argument");
-
-    let contents =
-        fs::read_to_string("data/input.txt").expect("Something went wrong reading the file");
-
+pub fn process(part: i32, contents: String) -> i32 {
     if part == 1 {
-        println!("{}", parse_rucksack_part1(contents));
+        return part1(contents);
     } else if part == 2 {
-        println!("{}", parse_rucksack_part2(contents));
+        return part2(contents);
     }
+
+    0
 }
 
 fn build_score_map() -> HashMap<char, i32> {
@@ -42,9 +27,9 @@ fn build_score_map() -> HashMap<char, i32> {
     score_map
 }
 
-fn parse_rucksack_part1(input: String) -> i32 {
+fn part1(input: String) -> i32 {
     let mut lines: Vec<&str> = input.split("\n").collect();
-    if lines[lines.len()] == "" {
+    if lines[lines.len() - 1] == "" {
         lines.pop();
     }
 
@@ -73,7 +58,7 @@ fn parse_rucksack_part1(input: String) -> i32 {
     result
 }
 
-fn parse_rucksack_part2(input: String) -> i32 {
+fn part2(input: String) -> i32 {
     let mut lines: Vec<&str> = input.split("\n").collect();
     if lines[lines.len() - 1] == "" {
         lines.pop();
@@ -136,7 +121,7 @@ mod tests {
             "CrZsJsPPZsGzwwsLwLmpwMDw",
         );
 
-        let result = parse_rucksack_part1(input.into());
+        let result = part1(input.into());
 
         assert_eq!(result, 157)
     }
@@ -152,7 +137,7 @@ mod tests {
             "CrZsJsPPZsGzwwsLwLmpwMDw",
         );
 
-        let result = parse_rucksack_part2(input.into());
+        let result = part2(input.into());
 
         assert_eq!(result, 70)
     }
