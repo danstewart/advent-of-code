@@ -28,6 +28,7 @@ fn main() {
         3 => days::day03::process(part, contents).to_string(),
         4 => days::day04::process(part, contents).to_string(),
         5 => days::day05::process(part, contents),
+        6 => days::day06::process(part, contents).to_string(),
         _ => {
             println!("Invalid day: {}", day);
             "ERR".into()
