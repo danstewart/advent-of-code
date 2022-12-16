@@ -1,5 +1,5 @@
 mod days;
-use std::{env, fs};
+use std::{env, fmt::Display, fs};
 
 // https://adventofcode.com/2022/day/<DAY>
 
@@ -23,13 +23,14 @@ fn main() {
         .expect(format!("Something went wrong reading the file: {}", &file_name).as_str());
 
     let answer = match day {
-        1 => days::day01::process(part, contents),
-        2 => days::day02::process(part, contents),
-        3 => days::day03::process(part, contents),
-        4 => days::day04::process(part, contents),
+        1 => days::day01::process(part, contents).to_string(),
+        2 => days::day02::process(part, contents).to_string(),
+        3 => days::day03::process(part, contents).to_string(),
+        4 => days::day04::process(part, contents).to_string(),
+        5 => days::day05::process(part, contents),
         _ => {
             println!("Invalid day: {}", day);
-            0
+            "ERR".into()
         }
     };
 
