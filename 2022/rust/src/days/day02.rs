@@ -3,7 +3,7 @@ use std::collections::HashMap;
 pub fn process(part: i32, contents: String) -> i32 {
     if part == 1 {
         return part1(contents);
-    } else {
+    } else if part == 2 {
         return part2(contents);
     }
 

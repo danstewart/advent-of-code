@@ -1,5 +1,5 @@
 mod days;
-use std::{env, fmt::Display, fs};
+use std::{env, fs};
 
 // https://adventofcode.com/2022/day/<DAY>
 
@@ -29,6 +29,7 @@ fn main() {
         4 => days::day04::process(part, contents).to_string(),
         5 => days::day05::process(part, contents),
         6 => days::day06::process(part, contents).to_string(),
+        7 => days::day07::process(part, contents).to_string(),
         _ => {
             println!("Invalid day: {}", day);
             "ERR".into()
