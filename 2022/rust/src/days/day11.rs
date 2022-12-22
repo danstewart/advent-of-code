@@ -1,3 +1,5 @@
+use std::collections::VecDeque;
+
 pub fn process(part: i32, contents: String) -> i32 {
     if part == 1 {
         return part1(contents);
@@ -9,7 +11,7 @@ pub fn process(part: i32, contents: String) -> i32 {
 }
 
 struct Monkey {
-    items: Vec<i32>,
+    items: VecDeque<i32>,
     test: Box<dyn Fn(i32) -> bool>,
     operation: Box<dyn Fn(i32) -> i32>,
     on_true: i32,
@@ -47,7 +49,7 @@ impl Monkey {
 
     fn from_string(input: String) -> Self {
         let lines: Vec<&str> = input.split("\n").collect();
-        let starting_items: Vec<i32> = lines[1]
+        let starting_items: VecDeque<i32> = lines[1]
             .split(":")
             .last()
             .unwrap()
@@ -70,12 +72,10 @@ impl Monkey {
 
     /// Inspect the item
     /// Then return the monkey it should be thrown to
-    fn get_item_target(&mut self) -> Option<i32> {
+    fn get_item_target(&self) -> Option<i32> {
         if self.items.len() == 0 {
             return None;
         }
-
-        self.items_inspected += 1;
 
         let mut item = self.items[0];
         item = (self.operation)(item);
@@ -87,16 +87,30 @@ impl Monkey {
 
         return Some(self.on_false);
     }
+
+    fn get_next_item(&mut self) -> i32 {
+        self.items.pop_front().unwrap()
+    }
 }
 
 fn part1(input: String) -> i32 {
+    let rounds: i32 = 20;
     let mut monkeys: Vec<Monkey> = vec![];
 
     for chunk in input.split("\n\n") {
         monkeys.push(Monkey::from_string(chunk.to_string()));
     }
 
-    for monkey in monkeys {}
+    for _ in 0..rounds {
+        for monkey in &mut monkeys {
+            while !monkey.items.is_empty() {
+                let target = monkey.get_item_target().unwrap();
+                let item = monkey.get_next_item();
+
+                println!("Move {} to monkey {}", item, target);
+            }
+        }
+    }
 
     0
 }
