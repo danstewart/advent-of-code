@@ -1,4 +1,8 @@
-use std::collections::VecDeque;
+use std::{cell::Cell, collections::VecDeque};
+
+// THIS DOES NOT WORK
+// This was abandoned in favour of rewriting in python
+// Maybe one day I'll come back and figure it out
 
 pub fn process(part: i32, contents: String) -> i32 {
     if part == 1 {
