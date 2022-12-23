@@ -8,6 +8,7 @@ from devtools import debug
 @dataclass
 class Monkey:
     items: deque[int]
+    division_amount: int
     test: Callable[[int], bool]
     operation: Callable[[int], int]
     on_true: int
@@ -53,6 +54,7 @@ class Monkey:
         return cls(
             items=deque(items),
             operation=op,
+            division_amount=test_value,
             test=test,
             on_true=true_target,
             on_false=false_target,
@@ -101,4 +103,21 @@ def part1(data: str) -> int:
 
 
 def part2(data: str) -> int:
-    return 0
+    rounds = 10000
+    monkeys: list[Monkey] = []
+
+    for chunk in data.split("\n\n"):
+        monkeys.append(Monkey.from_string(chunk))
+
+    divisor = 1
+    for monkey in monkeys:
+        divisor *= monkey.division_amount
+
+    for _ in range(rounds):
+        for monkey in monkeys:
+            while monkey.items:
+                item = monkey.inspect_and_get_next_item(lambda item: item % divisor)
+                monkey.throw_item(item, monkeys)
+
+    monkeys = sorted(monkeys, key=attrgetter("items_inspected"), reverse=True)
+    return monkeys[0].items_inspected * monkeys[1].items_inspected

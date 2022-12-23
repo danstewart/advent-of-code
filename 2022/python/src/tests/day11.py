@@ -37,4 +37,4 @@ def test_part1():
 
 def test_part2():
     result = day11.part2(DATA)
-    assert result == 0
+    assert result == 2713310158
